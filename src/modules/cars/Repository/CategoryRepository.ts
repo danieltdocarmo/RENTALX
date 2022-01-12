@@ -1,11 +1,8 @@
 import { Category } from "../model/Category";
+import { ICategoryRepository, IDTOCreateCategoryRepository } from "./ICategoryRepository";
 
-interface IDTOCreateCategoryRepository{
-    name: string;
-    description: string;
-}
 
-class CategoryRepository{
+class CategoryRepository implements ICategoryRepository{
     private categories: Category[];
 
     constructor(){

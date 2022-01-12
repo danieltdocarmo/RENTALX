@@ -1,6 +1,7 @@
 import {Router} from 'express';
-import { CreateCategoryService } from '../ services/CreateCategoryService';
-import { CategoryRepository } from '../Repository/CategoryRepository';
+import { CreateCategoryService } from '../modules/cars/ services/CreateCategoryService';
+import { CategoryRepository } from '../modules/cars/Repository/CategoryRepository';
+
 
 
 
