@@ -1,5 +1,6 @@
 import { Specification } from "../model/Specification";
-import { IDTOCreateSpecificationRepository, ISpecificationRepository } from "./ISpecificationRepository";
+import { IDTOCreateSpecificationRepository, ISpecificationRepository } from "./Implementations/ISpecificationRepository";
+
 
 class SpecificationRepository implements ISpecificationRepository{
     

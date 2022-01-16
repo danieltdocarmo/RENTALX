@@ -1,17 +1,26 @@
 import { Category } from "../model/Category";
-import { ICategoryRepository, IDTOCreateCategoryRepository } from "./ICategoryRepository";
+import { ICategoryRepository, IDTOCreateCategoryRepository } from "./Implementations/ICategoryRepository";
 
 
 class CategoryRepository implements ICategoryRepository{
     private categories: Category[];
 
-    constructor(){
+    public static INSTANCE:CategoryRepository;
+
+    private constructor(){
         this.categories = [];
+    }
+
+    public static getInstance(){
+        if(!CategoryRepository.INSTANCE){
+            return CategoryRepository.INSTANCE = new CategoryRepository();
+        }else{
+            return CategoryRepository.INSTANCE;
+        }
     }
 
     findByName(name:string):Category{
         const findedCategory = this.categories.find(category => category.name === name);
-
         return findedCategory;
     }
 
