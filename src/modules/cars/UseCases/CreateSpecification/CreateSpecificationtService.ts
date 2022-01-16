@@ -1,4 +1,4 @@
-import { ISpecificationRepository } from "../Repository/ISpecificationRepository";
+import { ISpecificationRepository } from "../../Repository/Implementations/ISpecificationRepository";
 
 
 
