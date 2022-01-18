@@ -9,4 +9,5 @@ class ImportFileController{
         this.importFileService.execute(file);
         response.status(200).json(file);
     }
+    
 } export {ImportFileController};

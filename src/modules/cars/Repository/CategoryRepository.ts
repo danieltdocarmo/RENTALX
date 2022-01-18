@@ -5,7 +5,7 @@ import { ICategoryRepository, IDTOCreateCategoryRepository } from "./Implementat
 class CategoryRepository implements ICategoryRepository{
     private categories: Category[];
 
-    public static INSTANCE:CategoryRepository;
+    private static INSTANCE:CategoryRepository;
 
     private constructor(){
         this.categories = [];
