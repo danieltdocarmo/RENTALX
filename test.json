@@ -1,11 +1,11 @@
 {
-  "name": "RENTALX",
+  "name": "RENTX",
   "version": "1.0.0",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
-      "name": "RENTALX",
+      "name": "RENTX",
       "version": "1.0.0",
       "license": "MIT",
       "dependencies": {

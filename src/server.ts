@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { rentalxRoutes } from './routes';
 import swaggerFile from '../src/swaager.json';
+import './database';
 
 const app = express();
 
