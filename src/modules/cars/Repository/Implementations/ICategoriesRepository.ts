@@ -1,4 +1,4 @@
-import { Category } from "../../model/Category";
+import { Category } from "../../entities/Category";
 
 interface IDTOCreateCategoryRepository{
     name: string;
@@ -6,8 +6,8 @@ interface IDTOCreateCategoryRepository{
 }
 
 interface ICategoryRepository{
-    findByName(name: string): Category;
-    list():Category[];
+    findByName(name: string): Promise<Category>;
+    list():Promise<Category[]>;
     create(data:IDTOCreateCategoryRepository):void;
 }
 

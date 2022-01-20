@@ -1,5 +1,5 @@
 import { Category } from "../../model/Category";
-import { CategoryRepository } from "../../Repository/CategoryRepository";
+import { CategoryRepository } from "../../Repository/CategoriesRepository";
 
 class ListCategoryService{
     constructor(private categoryRepository: CategoryRepository){}

@@ -1,4 +1,4 @@
-import { ISpecificationRepository } from "../../Repository/Implementations/ISpecificationRepository";
+import { ISpecificationsRepository } from "../../Repository/Implementations/ISpecificationsRepository";
 
 
 
@@ -8,7 +8,7 @@ interface IRequest{
 }
 
 class CreateSpecificationService{
-    constructor(private specificationRepository: ISpecificationRepository){}
+    constructor(private specificationRepository: ISpecificationsRepository){}
 
     execute({name, description}: IRequest){
         const findedSpecification = this.specificationRepository.findByName(name);

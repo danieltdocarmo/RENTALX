@@ -1,6 +1,6 @@
 import {parse} from 'csv-parse';
 import fs from 'fs';
-import { CategoryRepository } from '../../Repository/CategoryRepository';
+import { CategoryRepository } from '../../Repository/CategoriesRepository';
 
 interface ILoadCategory  {
     name: string;
