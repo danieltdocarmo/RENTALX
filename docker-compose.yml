@@ -10,7 +10,7 @@ services:
     environment:
       - POSTGRES_USER=rentx_user
       - POSTGRES_PASSWORD=rentx_password
-      - POSTGRES_DATABASE=rentx
+      - POSTGRES_DB=rentx
     volumes:
       - pgdata:/data/postgres
     

@@ -5,7 +5,8 @@
   "author": "Daniel do Carmo",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules -- src/server.ts"
+    "dev": "tsnd --inspect --transpile-only --ignore-watch node_modules -- src/server.ts",
+    "typeorm" : "tsnd node_modules/typeorm/cli"
   },
   "dependencies": {
     "@types/express": "^4.17.13",

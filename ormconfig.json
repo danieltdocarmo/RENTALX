@@ -4,5 +4,7 @@
     "port" : "5432",
     "name" : "rentx_user",
     "password" : "rentx_password",
-    "database" : "rentx"
+    "database" : "rentx",
+    "migrations" : ["./src/database/migrations/*.ts"],
+    "cli": {"migrationsDir": "./src/database/migrations"}
 }
