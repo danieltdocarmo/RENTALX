@@ -1,14 +1,14 @@
 import {Request, Response} from 'express';
-import { CreateCategoryService } from './CreateCategoryService';
+import {CreateCategoryService } from './CreateCategoryService';
 
 class CreateCategoryController{
     constructor(private createCategoryService: CreateCategoryService){
     }
 
-    handle(request:Request, response:Response ){
+    async handle(request:Request, response:Response ){
         const {name, description} = request.body;
         
-        this.createCategoryService.execute({name, description});
+        await this.createCategoryService.execute({name, description});
     
         response.status(201).send();
     }

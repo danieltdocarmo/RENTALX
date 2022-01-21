@@ -6,7 +6,7 @@ export class CreateCategories1642643495338 implements MigrationInterface {
         await queryRunner.createTable(
             new Table(
                 {
-                    name : 'category',
+                    name : 'categories',
                     columns : [
                         {
                             name : 'id',
@@ -31,7 +31,7 @@ export class CreateCategories1642643495338 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('category');
+        await queryRunner.dropTable('categories');
     }
 
 }

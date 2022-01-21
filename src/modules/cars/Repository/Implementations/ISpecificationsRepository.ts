@@ -1,7 +1,5 @@
 import { Specification } from "../../entities/Specification";
 
-
-
 interface IDTOCreateSpecificationRepository{
     name: string;
     description: string;

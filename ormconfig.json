@@ -6,6 +6,7 @@
     "username" : "rentx_user",
     "password" : "rentx_password",
     "database" : "rentx",
+    "entities" : ["./src/modules/cars/entities/*.ts"],
     "migrations" : ["./src/database/migrations/*.ts"],
     "cli": {"migrationsDir": "./src/database/migrations"}
 }
