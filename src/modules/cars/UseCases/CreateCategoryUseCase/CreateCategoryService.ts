@@ -9,8 +9,8 @@ interface IRequest{
 class CreateCategoryService{
     constructor(private categoryRepository: ICategoryRepository){}
 
-    execute({name, description}: IRequest){
-        const findedCategory = this.categoryRepository.findByName(name);
+ async execute({name, description}: IRequest){
+        const findedCategory = await this.categoryRepository.findByName(name);
     
     if(findedCategory){
         throw new Error('Category already exists');

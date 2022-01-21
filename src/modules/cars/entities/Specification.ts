@@ -1,6 +1,6 @@
-import { Column, PrimaryColumn, CreateDateColumn } from "typeorm";
+import { Column, PrimaryColumn, CreateDateColumn, Entity } from "typeorm";
 
-
+@Entity()
 class Specification{
     @PrimaryColumn()
     id?: string;

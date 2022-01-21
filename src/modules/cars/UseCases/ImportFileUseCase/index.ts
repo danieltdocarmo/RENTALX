@@ -1,8 +1,8 @@
-import { CategoryRepository } from "../../Repository/CategoriesRepository";
+import { CategoriesRepository } from "../../Repository/CategoriesRepository";
 import { ImportFileController } from "./ImportFileController";
 import { ImportFileService } from "./ImportFileService";
 
-const categoryRepository = CategoryRepository.getInstance();
+const categoryRepository = null //new CategoriesRepository();
 const importFileService = new ImportFileService(categoryRepository);
 const importFileController = new ImportFileController(importFileService);
 

@@ -1,11 +1,10 @@
 import express from 'express';
+import './database';
 import swaggerUi from 'swagger-ui-express';
 import { rentalxRoutes } from './routes';
 import swaggerFile from '../src/swaager.json';
-import './database';
 
 const app = express();
-
 
 app.listen(3333, () => {
     console.log('Server is running on port 3333');

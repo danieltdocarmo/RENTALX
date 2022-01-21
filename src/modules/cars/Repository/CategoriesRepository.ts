@@ -4,13 +4,12 @@ import { ICategoryRepository, IDTOCreateCategoryRepository } from "./Implementat
 
 
 class CategoriesRepository implements ICategoryRepository{
-        private categoriesRepository: Repository<Category>;
-
-     constructor(){
+    
+    private categoriesRepository: Repository<Category> 
+    
+    constructor(){
         this.categoriesRepository = getRepository(Category);
     }
-
-   
 
    async findByName(name:string):Promise<Category>{
         const findedCategory = await this.categoriesRepository.findOne({name});

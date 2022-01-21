@@ -1,8 +1,9 @@
 {
+    "name" : "default",
     "type" :  "postgres",
     "host" : "localhost",
     "port" : "5432",
-    "name" : "rentx_user",
+    "username" : "rentx_user",
     "password" : "rentx_password",
     "database" : "rentx",
     "migrations" : ["./src/database/migrations/*.ts"],
