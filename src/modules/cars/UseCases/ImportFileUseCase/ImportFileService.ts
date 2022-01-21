@@ -1,6 +1,6 @@
 import {parse} from 'csv-parse';
 import fs from 'fs';
-import { CategoryRepository } from '../../Repository/CategoriesRepository';
+import { CategoriesRepository } from '../../Repository/CategoriesRepository';
 
 interface ILoadCategory  {
     name: string;
@@ -8,7 +8,7 @@ interface ILoadCategory  {
 }
 
 class ImportFileService{ 
-    constructor(private categoryRepository: CategoryRepository){}
+    constructor(private categoriesRepository: CategoriesRepository){}
     
     loadCategories(file: Express.Multer.File): Promise<ILoadCategory[]>{
         return new Promise((resolve, reject) => {
@@ -33,14 +33,13 @@ class ImportFileService{
     async execute(file: Express.Multer.File): Promise<void>{
         const categories = await this.loadCategories(file);
         
-        categories.map(category => {
-            const findedName = this.categoryRepository.findByName(category.name);
+        categories.map(async category => {
+            const findedName = await this.categoriesRepository.findByName(category.name);
             
             if(!findedName){
-                this.categoryRepository.create(category);
+                await this.categoriesRepository.create(category);
             }
 
-            
         });
 
     }

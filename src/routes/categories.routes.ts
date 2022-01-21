@@ -1,8 +1,8 @@
 import {Router} from 'express';
-import  createCategoryController  from '../modules/cars/UseCases/CreateCategoryUseCase';
-import listCategoryController  from '../modules/cars/UseCases/ListCategoryUseCase';
 import multer from 'multer';
-import { importFileController } from '../modules/cars/UseCases/ImportFileUseCase';
+import createCategoryController  from '../modules/cars/UseCases/CreateCategoryUseCase';
+import listCategoryController  from '../modules/cars/UseCases/ListCategoryUseCase';
+import importFileController  from '../modules/cars/UseCases/ImportFileUseCase';
 
 const fileUpload = multer({
     dest: './temp'
@@ -18,8 +18,8 @@ categoriesRouter.get('/', async (_request, response) => {
     await listCategoryController().handle(response);
 });
 
-categoriesRouter.post('/import', fileUpload.single('file'), (request, response) => {
-    importFileController.handle(request, response);
+categoriesRouter.post('/import', fileUpload.single('file'), async (request, response) => {
+    await importFileController().handle(request, response);
 });
 
 export {categoriesRouter};
