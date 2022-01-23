@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 import { Category } from "../entities/Category";
-import { ICategoryRepository, IDTOCreateCategoryRepository } from "./Implementations/ICategoriesRepository";
+import { ICategoriesRepository, IDTOCreateCategoriesRepository } from "./Implementations/ICategoriesRepository";
 
 
-class CategoriesRepository implements ICategoryRepository{
+class CategoriesRepository implements ICategoriesRepository{
     
     private categoriesRepository: Repository<Category> 
     
@@ -16,7 +16,7 @@ class CategoriesRepository implements ICategoryRepository{
         return findedCategory;
     }
 
-    async create({name, description}: IDTOCreateCategoryRepository): Promise<void>{
+    async create({name, description}: IDTOCreateCategoriesRepository): Promise<void>{
         const findedCategory = await this.findByName(name);
         
         if(findedCategory){

@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { ImportFileService } from "./ImportFileService";
 
 class ImportFileController{
-    constructor(private importFileService: ImportFileService){}
 
     async handle(request: Request, response: Response){
         const { file } = request;
         
-        await this.importFileService.execute(file);
+        const importFileService = container.resolve(ImportFileService);
+
+        await importFileService.execute(file);
+        
         response.status(200).json(file);
     }
     
