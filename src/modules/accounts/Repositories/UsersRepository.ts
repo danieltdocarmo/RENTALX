@@ -11,7 +11,7 @@ class UsersRepository implements IUserRepository {
     }
 
     async create(data: IDTOUser): Promise<void> {
-        console.log(data);
+       
         const user = this.userRepository.create(data);
     
         await this.userRepository.save(user);

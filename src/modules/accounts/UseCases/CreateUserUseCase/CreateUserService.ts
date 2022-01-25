@@ -22,7 +22,7 @@ class CreateUserService{
 
         const passwordEncrypted = await hash(password, 8);
 
-        console.log({name, email, password, driver_license});
+        
         
         await this.usersRepository.create({
             name,
