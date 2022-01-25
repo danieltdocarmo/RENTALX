@@ -4,14 +4,14 @@ import { CreateCategoryService } from "../CreateCategoryUseCase/CreateCategorySe
 
 class CreateSpecificationController{
     
-    async handle(request: Request, response:Response): Promise<void>{
+    async handle(request: Request, response:Response){
         const {name, description} = request.body;
         
         const createSpecificationService = container.resolve(CreateCategoryService);
  
             await createSpecificationService.execute({name, description});
         
-            response.status(200).json({message: "ok"});
+        return response.status(200).send();
        
     }
 

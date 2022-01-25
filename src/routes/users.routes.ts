@@ -9,6 +9,6 @@ const listUserController = new ListUserController();
 
 usersRoutes.post('/', createUserController.handle);
 
-usersRoutes.get('', listUserController.handle);
+usersRoutes.get('/', listUserController.handle);
 
 export {usersRoutes};

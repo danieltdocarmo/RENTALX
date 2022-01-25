@@ -11,7 +11,7 @@ class ImportFileController{
 
         await importFileService.execute(file);
         
-        response.status(200).json(file);
+       return response.status(200).json(file);
     }
     
 } export {ImportFileController};

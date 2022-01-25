@@ -1,6 +1,6 @@
-import { inject, injectable } from "tsyringe";
-import { hash } from 'bcryptjs';
 
+import { hash } from 'bcryptjs';
+import { inject, injectable } from 'tsyringe';
 import { IDTOUser } from "../../Repositories/Implementations/IUserRepository";
 import { UsersRepository } from "../../Repositories/UsersRepository";
 
@@ -22,6 +22,8 @@ class CreateUserService{
 
         const passwordEncrypted = await hash(password, 8);
 
+        console.log({name, email, password, driver_license});
+        
         await this.usersRepository.create({
             name,
             email,
