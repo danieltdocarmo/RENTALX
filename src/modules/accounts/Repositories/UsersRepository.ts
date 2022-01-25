@@ -3,7 +3,7 @@ import { User } from "../Entities/User";
 import { IDTOUser, IUserRepository } from "./Implementations/IUserRepository";
 
 
-class UserRepository implements IUserRepository {
+class UsersRepository implements IUserRepository {
     constructor(private userRepository: Repository<User>
     ){
         this.userRepository = getRepository(User);
@@ -18,12 +18,12 @@ class UserRepository implements IUserRepository {
     
         }
 
-    async findByEmail(email): Promise<User>{
+    async findByEmail(email: string): Promise<User>{
         const userFinded = await this.userRepository.findOne(email);
         return userFinded;
     }
 
-    async findByDriver_license(driver_license): Promise<User>{
+    async findByDriver_license(driver_license:string): Promise<User>{
         const driver_licenseFinded = await this.userRepository.findOne(driver_license);
 
         return driver_licenseFinded;
@@ -33,4 +33,4 @@ class UserRepository implements IUserRepository {
        return await this.userRepository.find();
     }
 
-} export { UserRepository }
+} export { UsersRepository }

@@ -1,15 +1,17 @@
 import { inject, injectable } from "tsyringe";
+import { hash } from 'bcryptjs';
+
 import { IDTOUser } from "../../Repositories/Implementations/IUserRepository";
-import { UserRepository } from "../../Repositories/UserRepository";
+import { UsersRepository } from "../../Repositories/UsersRepository";
 
 @injectable()
 class CreateUserService{
     constructor(
         @inject('UsersRepository')
-        private usersRepository: UserRepository 
+        private usersRepository: UsersRepository 
     ){}
     
-    async execute({name, username, email, password, driver_license}: IDTOUser): Promise<void>{
+    async execute({name, email, password, driver_license}: IDTOUser): Promise<void>{
 
         const emailFinded = await this.usersRepository.findByEmail(email);
         const driver_licenseFinded = await this.usersRepository.findByDriver_license(driver_license);
@@ -18,11 +20,12 @@ class CreateUserService{
             throw new Error('User already exists');
         }
 
+        const passwordEncrypted = await hash(password, 8);
+
         await this.usersRepository.create({
             name,
-            username,
             email,
-            password,
+            password: passwordEncrypted,
             driver_license
         });
     }

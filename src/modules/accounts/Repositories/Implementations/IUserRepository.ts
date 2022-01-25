@@ -2,7 +2,6 @@ import { User } from "../../Entities/User";
 
 interface IDTOUser{
     name: string;
-    username: string;
     email: string;
     password: string;
     driver_license: string;

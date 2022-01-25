@@ -5,11 +5,11 @@ import { CreateUserService } from "./CreateUserService";
 class CreateUserController{
 
     async handle(request: Request, response: Response){
-        const {name, email, username, password, driver_license} = request.body;
+        const {name, email, password, driver_license} = request.body;
 
         const createUserService = container.resolve(CreateUserService);
 
-        await createUserService.execute({name, email, username, password, driver_license});
+        await createUserService.execute({name, email, password, driver_license});
     
         response.status(201).send();
     }
