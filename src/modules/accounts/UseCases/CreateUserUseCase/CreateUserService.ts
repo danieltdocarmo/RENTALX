@@ -1,6 +1,7 @@
 
 import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { IDTOUser } from "../../Repositories/Implementations/IUserRepository";
 import { UsersRepository } from "../../Repositories/UsersRepository";
 
@@ -17,13 +18,11 @@ class CreateUserService{
         const driver_licenseFinded = await this.usersRepository.findByDriver_license(driver_license);
 
         if(emailFinded || driver_licenseFinded){
-            throw new Error('User already exists');
+            throw new AppError(409, 'User already exists');
         }
 
         const passwordEncrypted = await hash(password, 8);
 
-        
-        
         await this.usersRepository.create({
             name,
             email,

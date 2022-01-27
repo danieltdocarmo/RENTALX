@@ -1,4 +1,5 @@
 import { getRepository, Repository } from "typeorm";
+import { AppError } from "../../../errors/AppError";
 import { Category } from "../entities/Category";
 import { ICategoriesRepository, IDTOCreateCategoriesRepository } from "./Implementations/ICategoriesRepository";
 
@@ -20,7 +21,7 @@ class CategoriesRepository implements ICategoriesRepository{
         const findedCategory = await this.findByName(name);
         
         if(findedCategory){
-            throw new Error('Category already exists!');
+            throw new AppError(403, 'Category already exists!');
         }
 
         const category = this.categoriesRepository.create({name, description});

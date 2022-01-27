@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../Repositories/Implementations/IUserRepository";
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken'; 
+import { AppError } from "../../../../errors/AppError";
 
 interface IUserToken{
     token: string;
@@ -27,13 +28,13 @@ class UserAuthenticationService{
         const userFinded = await this.userRepository.findByEmail(email);
 
         if(!userFinded){
-            throw new Error('Email not matched');
+            throw new AppError(401, 'Email not matched');
         }
 
         const match = await compare(password, userFinded.password);
 
         if(!match){
-            throw new Error('Password not matched');
+            throw new AppError(401, 'Password not matched');
         }
 
         const token = sign({},

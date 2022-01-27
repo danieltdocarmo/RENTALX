@@ -1,4 +1,5 @@
 import { getRepository, Repository } from "typeorm";
+import { AppError } from "../../../errors/AppError";
 import { Specification } from "../entities/Specification";
 import { IDTOCreateSpecificationRepository, ISpecificationsRepository } from "./Implementations/ISpecificationsRepository";
 
@@ -21,7 +22,7 @@ class SpecificationsRepository implements ISpecificationsRepository{
         const findedSpecification = await this.specificationsRepository.findOne({name});
         
         if(findedSpecification){
-            throw new Error('Specification already exists');
+            throw new AppError(409, 'Specification already exists');
         }
 
         const specification = this.specificationsRepository.create({name, description});
