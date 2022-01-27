@@ -13,4 +13,5 @@ class UserAuthenticationController{
 
         return response.status(200).json(userToken);
      }
-}
+
+}export { UserAuthenticationController }

@@ -7,9 +7,7 @@ interface IUserToken{
     token: string;
     user: {
         email : string,
-        name: string,
-        driver_license : string,
-        isAdmin: string
+        name: string
     };
 }
 
@@ -29,13 +27,13 @@ class UserAuthenticationService{
         const userFinded = await this.userRepository.findByEmail(email);
 
         if(!userFinded){
-            throw new Error('Email or password not matched');
+            throw new Error('Email not matched');
         }
 
-        const match = await compare(userFinded.password, password);
+        const match = await compare(password, userFinded.password);
 
         if(!match){
-            throw new Error('Email or password not matched');
+            throw new Error('Password not matched');
         }
 
         const token = sign({},
@@ -49,9 +47,7 @@ class UserAuthenticationService{
             token,
             user : {
                 name : userFinded.name,
-                email : userFinded.email,
-                driver_license: userFinded.driver_license,
-                isAdmin : userFinded.isAdmin
+                email : userFinded.email
             }
         }  
     }

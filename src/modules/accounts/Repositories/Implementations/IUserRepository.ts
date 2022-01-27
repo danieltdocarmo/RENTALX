@@ -13,5 +13,6 @@ interface IUserRepository {
     list(): Promise<User[]>;
     findByEmail(email: string): Promise<User>;
     findByDriver_license(driver_license: string): Promise<User>;
+    findById(userId: string): Promise<User>;
 
 } export {IDTOUser, IUserRepository};
