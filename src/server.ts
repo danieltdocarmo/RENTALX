@@ -1,9 +1,8 @@
+import 'express-async-errors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import 'express-async-errors';
 import './database';
 import swaggerFile from '../src/swaager.json';
-
 import { rentalxRoutes } from './routes';
 import err from './middlewares/err';
 

@@ -29,6 +29,11 @@ export default async function ensureAuthentication(request:Request, response:Res
             throw new AppError(401, 'User not found');
         }
 
+        request.user = {
+            id: userId
+        }
+
+        
         next();
     } catch(e){
         throw new AppError(401, 'Invalid Token')

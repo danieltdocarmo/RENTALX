@@ -5,6 +5,8 @@ interface IDTOUser{
     email: string;
     password: string;
     driver_license: string;
+    id?: string;
+    userAvatar?: string;
 }
 
 interface IUserRepository {
