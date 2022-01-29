@@ -7,7 +7,7 @@ class UpdateUserAvatarController{
 
      async handle(request: Request, response: Response ):Promise<void>{
         const {id} = request.user;
-        const avatarFile = request.file.fieldname;
+        const avatarFile = request.file.filename;
 
         const updateUserAvatarService = container.resolve(UpdateUserAvatarService);
         

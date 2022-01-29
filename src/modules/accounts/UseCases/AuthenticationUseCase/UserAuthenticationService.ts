@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../Repositories/Implementations/IUserRepository";
+import { UsersRepository } from "../../Repositories/UsersRepository";
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken'; 
 import { AppError } from "../../../../errors/AppError";
@@ -21,7 +21,7 @@ type IUser = {
 class UserAuthenticationService{
     constructor(
         @inject('UsersRepository')
-        private userRepository: IUserRepository){
+        private userRepository: UsersRepository){
     }
 
     async execute({email, password}: IUser): Promise<IUserToken>{
