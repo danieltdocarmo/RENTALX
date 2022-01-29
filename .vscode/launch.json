@@ -7,13 +7,12 @@
         {
             "type": "node",
             "request": "attach",
-            "name": "RENTALX debbuger",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "name": "Docker: Attach to Node Rentx",
+            "address": "localhost",
+            "port": 9229,
+            "sourceMapPathOverrides": {
+                "/the/workdir/path/*": "${workspaceRoot}/*"
+            }
         }
     ]
 }
