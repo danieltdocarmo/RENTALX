@@ -20,6 +20,7 @@ usersRoutes.get('/', listUserController.handle);
 
 usersRoutes.patch(
     '/avatar',
+    ensureAuthentication,
     avatarUploud.single('avatar'), 
     updateUserAvatarController.handle
 );

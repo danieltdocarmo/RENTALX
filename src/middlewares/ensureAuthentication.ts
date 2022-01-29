@@ -8,9 +8,8 @@ interface IToken{
     sub: string;
 }
 
-const userRepository = new UsersRepository(); 
-
 export default async function ensureAuthentication(request:Request, response:Response, next:NextFunction){
+    const userRepository = new UsersRepository();
     const {authorization} = request.headers;
 
     if(!authorization){
