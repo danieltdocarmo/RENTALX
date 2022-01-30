@@ -14,14 +14,14 @@ class CreateCategoryService{
         private categoriesRepository: ICategoriesRepository
         ){}
 
- async execute({name, description}: IRequest){
+    async execute({name, description}: IRequest){
         const findedCategory = await this.categoriesRepository.findByName(name);
     
-    if(findedCategory){
-        throw new AppError(409, 'Category already exists');
-    }
-    this.categoriesRepository.create({name, description});
-    }
+        if(findedCategory){
+            throw new AppError(409, 'Category already exists');
+        }
+        this.categoriesRepository.create({name, description});
+        }
     
 }
 

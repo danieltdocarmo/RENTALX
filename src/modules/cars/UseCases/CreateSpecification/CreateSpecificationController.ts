@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { CreateCategoryService } from "../CreateCategoryUseCase/CreateCategoryService";
+import { CreateCategoryService } from "../CreateCategory/CreateCategoryService";
 
 class CreateSpecificationController{
     

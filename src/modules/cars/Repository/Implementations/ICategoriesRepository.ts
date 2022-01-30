@@ -8,7 +8,7 @@ interface IDTOCreateCategoriesRepository{
 interface ICategoriesRepository{
     findByName(name: string): Promise<Category>;
     list():Promise<Category[]>;
-    create(data:IDTOCreateCategoriesRepository):void;
+    create(data:IDTOCreateCategoriesRepository):Promise<void>;
 }
 
 export {ICategoriesRepository, IDTOCreateCategoriesRepository};
