@@ -2,14 +2,13 @@
 import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
-import { IDTOUser } from "../../Repositories/Implementations/IUserRepository";
-import { UsersRepository } from "../../Repositories/UsersRepository";
+import { IDTOUser, IUserRepository } from "../../Repositories/Implementations/IUserRepository";
 
 @injectable()
 class CreateUserService{
     constructor(
         @inject('UsersRepository')
-        private usersRepository: UsersRepository 
+        private usersRepository: IUserRepository 
     ){}
     
     async execute({name, email, password, driver_license}: IDTOUser): Promise<void>{
