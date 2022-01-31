@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../Repositories/Implementations/IUserRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken'; 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 
 interface IUserToken{
     token: string;

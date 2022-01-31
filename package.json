@@ -5,7 +5,7 @@
   "author": "Daniel do Carmo",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules -- src/server.ts",
+    "dev": "tsnd --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules -- src/shared/infra/http/server.ts",
     "typeorm": "tsnd node_modules/typeorm/cli",
     "test": "jest"
   },

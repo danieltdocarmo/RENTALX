@@ -1,6 +1,6 @@
-import { AppError } from "../../../../errors/AppError";
-import { IDTOUser, IUserRepository } from "../../Repositories/Implementations/IUserRepository";
-import { UsersRepositoryInMemory } from "../../Repositories/InMemory/UsersRepositoryInMemory";
+import { AppError } from "../../../../shared/errors/AppError";
+import { IDTOUser, IUserRepository } from "../../repositories/IUserRepository";
+import { UsersRepositoryInMemory } from "../../infra/typeorm/Repositories/InMemory/UsersRepositoryInMemory";
 import { CreateUserService } from "../CreateUserUseCase/CreateUserService";
 import { UserAuthenticationService } from "./UserAuthenticationService";
 

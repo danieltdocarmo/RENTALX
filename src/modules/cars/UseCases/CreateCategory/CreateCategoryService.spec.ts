@@ -1,6 +1,6 @@
-import { AppError } from "../../../../errors/AppError";
-import { ICategoriesRepository } from "../../Repository/Implementations/ICategoriesRepository";
-import { CategoriesRepositoryInMemory } from "../../Repository/InMemory/CategoriesRepositoryInMemory";
+import { AppError } from "../../../../shared/errors/AppError";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
+import { CategoriesRepositoryInMemory } from "../../infra/typeorm/Repository/InMemory/CategoriesRepositoryInMemory";
 import { CreateCategoryService } from "./CreateCategoryService";
 
 let categoriesRepositoryInMemory: ICategoriesRepository;
@@ -23,10 +23,8 @@ describe("Create Category", () => {
         const findedCategory = await categoriesRepositoryInMemory.findByName(category.name);
 
         expect(findedCategory).toHaveProperty('id');
-    })
-});
+    });
 
-describe("Create Category",  () => {
     it("Should not be able to create a new Category if name already exists", async () => {
       
         expect(async ()=>{
@@ -39,5 +37,6 @@ describe("Create Category",  () => {
             await createCategoryService.execute(category);
             
         }).rejects.toBeInstanceOf(AppError);
-    })
+    });
 });
+
