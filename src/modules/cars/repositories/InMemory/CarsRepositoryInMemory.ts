@@ -1,6 +1,6 @@
-import { IDTOCar } from "../../../../DTOs/car";
-import { ICarsRepository } from "../../../../repositories/ICarsRepository";
-import { Car } from "../../entities/Car";
+import { IDTOCar } from "../../DTOs/car";
+import { ICarsRepository } from "../ICarsRepository";
+import { Car } from "../../infra/typeorm/entities/Car";
 
 class CarsRepositoryInMemory implements ICarsRepository{
      

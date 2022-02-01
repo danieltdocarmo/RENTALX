@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
-import { CategoriesRepositoryInMemory } from "../../infra/typeorm/Repository/InMemory/CategoriesRepositoryInMemory";
+import { CategoriesRepositoryInMemory } from "../../repositories/InMemory/CategoriesRepositoryInMemory";
 import { CreateCategoryService } from "./CreateCategoryService";
 
 let categoriesRepositoryInMemory: ICategoriesRepository;

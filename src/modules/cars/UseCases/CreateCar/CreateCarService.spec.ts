@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { IDTOCar } from "../../DTOs/car";
-import { CarsRepositoryInMemory } from "../../infra/typeorm/Repository/InMemory/CarsRepositoryInMemory";
+import { CarsRepositoryInMemory } from "../../repositories/InMemory/CarsRepositoryInMemory";
 import { ICarsRepository } from "../../repositories/ICarsRepository";
 import { CreateCarService } from "./CreateCarService";
 

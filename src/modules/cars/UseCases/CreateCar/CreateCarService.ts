@@ -3,10 +3,10 @@ import { AppError } from "../../../../shared/errors/AppError";
 import { IDTOCar } from "../../DTOs/car";
 import { ICarsRepository } from "../../repositories/ICarsRepository";
 
-//@injectable()
+@injectable()
 class CreateCarService{
     constructor(
-        //@inject('CarsRepository')
+        @inject('CarsRepository')
         private carsRepository: ICarsRepository
     ){}
 

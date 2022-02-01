@@ -1,5 +1,5 @@
-import { Category } from "../../entities/Category";
-import { ICategoriesRepository, IDTOCreateCategoriesRepository } from "../../../../repositories/ICategoriesRepository";
+import { Category } from "../../infra/typeorm/entities/Category";
+import { ICategoriesRepository, IDTOCreateCategoriesRepository } from "../ICategoriesRepository";
 
 class CategoriesRepositoryInMemory implements ICategoriesRepository{
     private categoriesRepository: Category[];
