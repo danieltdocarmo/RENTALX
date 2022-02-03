@@ -21,7 +21,7 @@ export class CreateCars1643582886788 implements MigrationInterface {
                 },
                 {
                     name: "daily_rate",
-                    type: 'number'
+                    type: 'numeric'
                 }, {
                     name: "available",
                     type: 'boolean',
@@ -31,7 +31,7 @@ export class CreateCars1643582886788 implements MigrationInterface {
                     type: 'varchar'
                 }, {
                     name: "fine_amount",
-                    type: 'number'
+                    type: 'numeric'
                 }, {
                     name: "brand",
                     type: 'varchar'
