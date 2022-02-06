@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
 import { IDTOCar } from "../../DTOs/car";
+import { Car } from "../../infra/typeorm/entities/Car";
 import { ICarsRepository } from "../../repositories/ICarsRepository";
 
 @injectable()
@@ -10,14 +11,16 @@ class CreateCarService{
         private carsRepository: ICarsRepository
     ){}
 
-    async execute(data: IDTOCar): Promise<void>{
+    async execute(data: IDTOCar): Promise<Car>{
         const findedCar = await this.carsRepository.findByLicense_plate(data.license_plate);
 
         if(findedCar){
             throw new AppError(409,'License Plate already exists');
         }
         
-        await this.carsRepository.create(data);
+        const car = await this.carsRepository.create(data);
+
+        return car;
     }
 
 } export { CreateCarService}

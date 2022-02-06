@@ -9,5 +9,14 @@ interface IDTOCar{
     fine_amount: number;
     brand: string;
     created_at?: Date;
+    category_id?: string;
 
-} export {IDTOCar};
+} 
+
+interface IDTOCarFilter {
+    category_id?: string;
+    brand?: string;
+    name?: string;
+}
+
+export {IDTOCar, IDTOCarFilter};

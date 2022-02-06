@@ -1,18 +1,20 @@
-import { Request } from "express";
+import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { IDTOCar } from "../../DTOs/car";
 import { CreateCarService } from "./CreateCarService";
 
 class CreateCarController{
      
-    async handle(request:Request, reponse:Response){
+    async handle(request:Request, response: Response){
         const {
             name,
             description,
             daily_rate,
             license_plate,
             fine_amount,
-            brand} = request.body;
+            brand,
+            category_id
+        } = request.body;
+
         const createCarService = container.resolve(CreateCarService);
 
         await createCarService.execute({
@@ -21,6 +23,11 @@ class CreateCarController{
             daily_rate,
             license_plate,
             fine_amount,
-            brand});
+            brand,
+            category_id
+        });
+        
+        return response.status(201).send()
     }
-}
+
+} export { CreateCarController }

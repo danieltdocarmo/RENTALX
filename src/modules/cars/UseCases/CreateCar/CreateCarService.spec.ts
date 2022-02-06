@@ -10,13 +10,15 @@ let createCarService: CreateCarService;
 
 describe('Create a car', ()=>{
     beforeAll(()=>{
-         car = {
+         
+        car = {
             name: 'CarName',
             description: 'ImLikeThis',
             daily_rate: 1,
             license_plate: 'XXX-333',
             fine_amount: 1,
-            brand: 'MyMaker'
+            brand: 'MyMaker',
+            category_id: 'uuid'
         }
 
         carsRepository = new CarsRepositoryInMemory();
@@ -39,7 +41,6 @@ describe('Create a car', ()=>{
 
     it('All cars for default has available true', async () => {
         const findedCar = await carsRepository.findByLicense_plate(car.license_plate);
-
         expect(findedCar.available).toEqual(true);
     });
 
