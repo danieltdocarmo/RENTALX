@@ -7,6 +7,8 @@ interface ICarsRepository{
       
       findByLicense_plate(license_plate: string):Promise<Car>;
 
+      findById(car_id: string):Promise<Car>;
+      
       listAllCarsAvailables(
             name?:string,
             brand?:string,

@@ -9,6 +9,10 @@ class CarsRepositoryInMemory implements ICarsRepository{
     constructor(){
         this.carsRepository = [];
     }
+    
+    async findById(car_id: string): Promise<Car> {
+        return this.carsRepository.find(car => car.id === car_id);
+    }
 
     async listAllCarsAvailables( 
         name?:string,
