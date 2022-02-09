@@ -9,7 +9,8 @@ interface IDTOCreateSpecificationRepository{
 interface ISpecificationsRepository{
     findByName(name: string): Promise<Specification>;
     list():Promise<Specification[]>;
-    create(data:IDTOCreateSpecificationRepository):Promise<void>;
+    create(data:IDTOCreateSpecificationRepository):Promise<Specification>;
+    findByIds(specifications_ids:string[]):Promise<Specification[]>;
 }
 
 export {ISpecificationsRepository, IDTOCreateSpecificationRepository};

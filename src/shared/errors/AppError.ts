@@ -1,4 +1,4 @@
-class AppError{
+class AppError {
     public readonly statusCode: number;
     public readonly message: string;
 
