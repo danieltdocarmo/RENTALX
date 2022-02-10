@@ -1,4 +1,4 @@
-import { IDTOCar, IDTOCarFilter } from "../DTOs/car";
+import { IDTOCar } from "../DTOs/car";
 import { Car } from "../infra/typeorm/entities/Car";
 
 interface ICarsRepository{
