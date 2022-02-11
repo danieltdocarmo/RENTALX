@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import {v4 as uuid} from 'uuid';
 import { Category } from './Category';
+import { ImageCar } from './ImageCar';
 import { Specification } from './Specification';
 
 @Entity('cars')
