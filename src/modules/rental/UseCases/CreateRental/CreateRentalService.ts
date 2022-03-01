@@ -13,22 +13,32 @@ interface IRequest{
 class CreateRentalService{
     constructor(
         @inject('RentalsRepository')
-        private rentalsRepository: IRentalRepository
+        private rentalsRepository: IRentalRepository,
+        @inject('DateProvider')
+        private dateProvider: IDateProvider
     ){}
 
     async execute(data: IRequest):Promise<void>{
-        const { car_id, user_id} = data;
+        const { car_id, user_id,expect_return_date} = data;
 
         const rentalByCar = await this.rentalsRepository.findOpenRentalByCar(car_id);
 
         if(rentalByCar){
-            throw new AppError(403, 'Rental for this car already exist');
+            throw new AppError(403, 'This car is unavailable');
         }
 
         const rentalByUser = await this.rentalsRepository.findOpenRentalByUser(user_id);
 
         if(rentalByUser){
-            throw new AppError(403, 'Rental for this user already exist');
+            throw new AppError(403, 'A rental for this user already exist');
+        }
+       
+        
+       const compareResult = this.dateProvider
+       .compareDateInHours(expect_return_date, this.dateProvider.dateNow())
+
+        if(compareResult < 24){
+            throw new AppError(402, 'Invalid return date');
         }
 
         await this.rentalsRepository.create(data);
