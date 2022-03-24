@@ -9,6 +9,13 @@ class CarsRepositoryInMemory implements ICarsRepository{
     constructor(){
         this.carsRepository = [];
     }
+   
+    async changeAvailableCarStatusTo(available: boolean, id: string): Promise<void> {
+            this.carsRepository.forEach((car, index) => {
+            if(car.id == id)
+                this.carsRepository[index].available = available;
+        });
+    }
     
     async findById(car_id: string): Promise<Car> {
         return this.carsRepository.find(car => car.id === car_id);

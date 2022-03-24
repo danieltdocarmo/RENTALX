@@ -11,12 +11,12 @@ const createCarController = new CreateCarController();
 const listAllAvailableCarsController = new ListAllAvailableCarsController();
 const uploadImagesCarServiceController = new UploadImagesCarServiceController();
 
-const imagesUpload = multer(uploadConfig.upload('/temp/images'));
+//const imagesUpload = multer(uploadConfig.upload('/temp/images'));
 
 carsRoutes.post('/', createCarController.handle);
 
 carsRoutes.get('/', listAllAvailableCarsController.handle);
 
-carsRoutes.post('/images', imagesUpload.array('images'), uploadImagesCarServiceController.handle);
+//carsRoutes.post('/images', imagesUpload.array('images'), uploadImagesCarServiceController.handle);
 
 export {carsRoutes}

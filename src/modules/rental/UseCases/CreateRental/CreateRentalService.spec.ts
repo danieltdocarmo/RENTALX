@@ -29,7 +29,7 @@ describe("Create new Rental use cases", ()=>{
        userRepository = new UsersRepositoryInMemory;
        dateProvider = new DateProvider();
        rentalsRepository = new RentalRepositoryInMemory();
-       createRentalService = new CreateRentalService(rentalsRepository, dateProvider);
+       createRentalService = new CreateRentalService(rentalsRepository, dateProvider, carsRepository);
 
        car = await carsRepository.create({
             name: 'gol',
@@ -119,5 +119,19 @@ describe("Create new Rental use cases", ()=>{
                 expect_return_date: new Date(Date.now())
             });
         }).rejects.toBeInstanceOf(AppError);
+    });
+
+    it('Should be able to change available status from a car how has been rented', async ()=>{
+        
+        await createRentalService.execute({
+            car_id: car.id,
+            user_id:user.id,
+            expect_return_date: dayAdd24Hours
+        });
+
+        const findedCar = await carsRepository.findById(car.id);
+
+        expect(findedCar.available).toBe(false);
+
     });
 });

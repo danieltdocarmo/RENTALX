@@ -5,6 +5,11 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 class DateProvider implements IDateProvider{
+   
+    compareDateInDays(expect_return_date: Date, atualDate: Date): number {
+        return compare(this.convertDateToUtc(expect_return_date))
+               .diff(this.convertDateToUtc(atualDate), "days");
+    }
     
     compareDateInHours(expect_return_date: Date, atualDate: Date): number {
         return compare(this.convertDateToUtc(expect_return_date))

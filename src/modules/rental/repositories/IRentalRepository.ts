@@ -3,7 +3,7 @@ import { Rental } from "../infra/typeorm/entities/Rental";
 interface IRequest{
     car_id:string;
     user_id:string;
-    expect_return_date: Date;
+    expected_return_date: Date;
 }
 
 interface IRentalRepository{
@@ -13,5 +13,13 @@ interface IRentalRepository{
     findOpenRentalByCar(car_id: string): Promise<Rental>;
    
     findOpenRentalByUser(user_id: string): Promise<Rental>;
+
+    findById(id: string): Promise<Rental>;
+
+    save(rental: Rental): Promise<void>
+
+    findByUserId(user_id: string):Promise<Rental>;
+
+    
 
 } export { IRentalRepository }

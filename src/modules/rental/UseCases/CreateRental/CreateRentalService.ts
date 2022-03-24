@@ -1,5 +1,6 @@
 import { inject, injectable, injectAll } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
+import { ICarsRepository } from "../../../cars/repositories/ICarsRepository";
 import { IRentalRepository } from "../../repositories/IRentalRepository";
 
 
@@ -15,7 +16,9 @@ class CreateRentalService{
         @inject('RentalsRepository')
         private rentalsRepository: IRentalRepository,
         @inject('DateProvider')
-        private dateProvider: IDateProvider
+        private dateProvider: IDateProvider,
+        @inject('CarsRepository')
+        private carRepository: ICarsRepository
     ){}
 
     async execute(data: IRequest):Promise<void>{
@@ -42,6 +45,8 @@ class CreateRentalService{
         }
 
         await this.rentalsRepository.create(data);
+
+        await this.carRepository.changeAvailableCarStatusTo(false, car_id);
 
     }
 

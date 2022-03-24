@@ -5,7 +5,7 @@ import { Rental } from "../entities/Rental";
 interface IRequest{
     car_id:string;
     user_id:string;
-    expect_return_date: Date;
+    expected_return_date: Date;
 }
 
 class RentalRepository implements IRentalRepository{
@@ -15,14 +15,30 @@ class RentalRepository implements IRentalRepository{
         this.repository = getRepository(Rental);
     }
 
+    async save(rental: Rental): Promise<void> {
+        await this.repository.save(rental);
+    }
+
+    async findById(id: string): Promise<Rental> {
+        return await this.repository.findOne(id);
+    }
+
+    async findByUserId(user_id: string): Promise<Rental> {
+        return await this.repository.findOne({
+            where: {
+                user_id
+            }
+        })
+    }
+
     async create(data: IRequest): Promise<void> {
         const rental = this.repository.create(data);
 
         await this.repository.save(rental);
     }
 
-    findOpenRentalByCar(car_id: string): Promise<Rental> {
-        const findedRental = this.repository.findOne({
+    async findOpenRentalByCar(car_id: string): Promise<Rental> {
+        const findedRental = await this.repository.findOne({
             where : {
                 car_id,
                 end_date : null
@@ -32,8 +48,8 @@ class RentalRepository implements IRentalRepository{
         return findedRental;
     }
 
-    findOpenRentalByUser(user_id: string): Promise<Rental> {
-        const findedRental = this.repository.findOne({
+    async findOpenRentalByUser(user_id: string): Promise<Rental> {
+        const findedRental = await this.repository.findOne({
             where : {
                 user_id,
                 end_date : null

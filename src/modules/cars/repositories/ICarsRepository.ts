@@ -14,5 +14,7 @@ interface ICarsRepository{
             brand?:string,
             category_id?:string
             ):Promise<Car[]>; 
+
+      changeAvailableCarStatusTo(available: boolean, id: string): Promise<void>
       
 } export { ICarsRepository }

@@ -22,7 +22,7 @@ export class CreateRental1644983042065 implements MigrationInterface {
                 type: 'timestamp'
             },{
                 name: 'total',
-                type: 'number',
+                type: 'numeric',
                 isNullable: true
             },{
                 name: 'created_at',

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsnd --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules -- src/shared/infra/http/server.ts",
     "typeorm": "tsnd node_modules/typeorm/cli",
-    "test": "jest",
+    "test": " NODE_ENV=test jest",
     "seed:admin": "tsnd src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {

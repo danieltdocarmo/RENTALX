@@ -5,8 +5,12 @@ export default async (host = 'database') => {
 
   return createConnection(
     Object.assign(connection, {
-    host
-  })
-  )
-
+      host : process.env.NODE_ENV === 'test' 
+      ? 'localhost' 
+      : host,
+      database : process.env.NODE_ENV === 'test' 
+      ? 'rentx_test' 
+      : connection.database
+    })
+  );
 }
