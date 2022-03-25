@@ -53,7 +53,8 @@ class RentalRepository implements IRentalRepository{
             where : {
                 user_id,
                 end_date : null
-            }
+            },
+            relations: ['car']
         });
         
         return findedRental;
