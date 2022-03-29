@@ -1,49 +1,190 @@
 {
-    "openapi" : "3.0.0",
-    "info" : {
-        "title" : "Rentx documentation",
-        "description" : "This is an api rent",
-        "version" : "1.0.0",
-        "contact" : {
-            "email" : "rentalx@rentalx.com"
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rentx documentation",
+        "description": "This is an api rent",
+        "version": "1.0.0",
+        "contact": {
+            "email": "rentalx@rentalx.com"
         }
     },
     "paths": {
-        "/categories" : {
-            "post" : {
-                "tags": ["Category"],
-                "summary" : "Create a category",
-                "description" : "Crate a new category",
-                "requestBody" : {
-                    "content" : {
-                        "application/json" : {
-                            "schema" : {
-                                "type" : "object",
-                                "properties" : {
-                                    "name" : {
-                                        "type" : "string"
+        "/categories": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create a category",
+                "description": "Crate a new category",
+                "security" : [{
+                    "bearerAuth": []
+                }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
                                     },
-                                    "description" : {
-                                        "type" : "string"
+                                    "description": {
+                                        "type": "string"
                                     }
                                 },
-                                "example" : {
-                                    "name" : "Category name sample",
-                                    "description" :"Category name sample"
+                                "example": {
+                                    "name": "Category name sample",
+                                    "description": "Category name sample"
                                 }
                             }
                         }
                     }
                 },
-                "responses" : {
-                    "201" : {
+                "responses": {
+                    "201": {
                         "description": "Created"
+                    },
+                    "409": {
+                        "description": "Category name already exist"
                     }
                 }
             }
+        }, "categories/imports":{
+            "post": {
+                "tags": ["Category"],
+                "summary" : "Uploads a new category",
+                "description" : "Upload a new category",
+                "security" : [
+                    { "bearerAuth": []}
+                ],
+                "requestBody" : {
+                    "content": {
+                        "multipart/form-data":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file" : {
+                                        "type" : "string",
+                                        "format" : "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }, "responses" : {
+                        "201": {
+                            "description" : "imported"
+                        }
+                }
+            }
         },
-        "/specifications" : {
+        "/specifications": {
 
+        },
+        "/sessions": {
+            "post": {
+                "tags": [
+                    "Sessions"
+                ],
+                "summary": "Create a session",
+                "description": "Crate a new session",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "email": "admin@rentx.com",
+                                    "password": "adminpassword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Session created"
+                    },
+                    "401": {
+                        "description": "Email or password are incorrect"
+                    }
+                }
+            },
+            "cars": {}
+        },
+        "/cars":{
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Create a car",
+                "description": "Crate a new car",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "#ref" : "#definitions/Car",
+                                "example": {
+                                    "email": "admin@rentx.com",
+                                    "password": "adminpassword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Car created"
+                    },
+                    "401": {
+                        "description": "Car already exists"
+                    }
+                }
+            }  
+        }
+    },"definitions": {
+        "Car":{
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "daily_rate": {
+                    "type": "number"
+                },
+                "license_plate": {
+                    "type": "string"
+                },
+                "fine_amount": {
+                    "type": "number"
+                },
+                "brand": {
+                    "type": "string"
+                },
+                "category_id": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
         }
     }
 }
