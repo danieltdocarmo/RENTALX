@@ -4,10 +4,10 @@ import { ICarsRepository } from "../../../cars/repositories/ICarsRepository";
 import { IRentalRepository } from "../../repositories/IRentalRepository";
 
 
-interface IRequest{
+interface createRental{
     car_id:string;
     user_id:string;
-    expect_return_date: Date;
+    expected_return_date: Date;
 }
 
 @injectable()
@@ -21,8 +21,8 @@ class CreateRentalService{
         private carRepository: ICarsRepository
     ){}
 
-    async execute(data: IRequest):Promise<void>{
-        const { car_id, user_id,expect_return_date} = data;
+    async execute(data: createRental):Promise<void>{
+        const { car_id, user_id, expected_return_date} = data;
 
         const rentalByCar = await this.rentalsRepository.findOpenRentalByCar(car_id);
 
@@ -38,12 +38,12 @@ class CreateRentalService{
        
         
        const compareResult = this.dateProvider
-       .compareDateInHours(expect_return_date, this.dateProvider.dateNow())
+       .compareDateInHours(expected_return_date, this.dateProvider.dateNow())
 
         if(compareResult < 24){
             throw new AppError(402, 'Invalid return date');
         }
-
+        console.log(expected_return_date);
         await this.rentalsRepository.create(data);
 
         await this.carRepository.changeAvailableCarStatusTo(false, car_id);

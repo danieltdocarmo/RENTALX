@@ -66,7 +66,7 @@ describe("Create new Rental use cases", ()=>{
         await createRentalService.execute({
             car_id: car.id,
             user_id:user.id,
-            expect_return_date: dayAdd24Hours
+            expected_return_date: dayAdd24Hours
         });
 
         const rental = await rentalsRepository.findOpenRentalByCar(car.id);
@@ -79,7 +79,7 @@ describe("Create new Rental use cases", ()=>{
         await createRentalService.execute({
             car_id: car.id,
             user_id:user.id,
-            expect_return_date: dayAdd24Hours
+            expected_return_date: dayAdd24Hours
         });
 
         expect(async () => {
@@ -87,7 +87,7 @@ describe("Create new Rental use cases", ()=>{
             await createRentalService.execute({
                 car_id: car.id,
                 user_id:user.id,
-                expect_return_date: dayAdd24Hours
+                expected_return_date: dayAdd24Hours
             });
 
         }).rejects.toBeInstanceOf(AppError);
@@ -97,7 +97,7 @@ describe("Create new Rental use cases", ()=>{
         await createRentalService.execute({
             car_id: car.id,
             user_id:user.id,
-            expect_return_date: dayAdd24Hours
+            expected_return_date: dayAdd24Hours
         });
 
         expect(async () => {
@@ -105,7 +105,7 @@ describe("Create new Rental use cases", ()=>{
             await createRentalService.execute({
                 car_id: carTwo.id,
                 user_id:user.id,
-                expect_return_date: dayAdd24Hours
+                expected_return_date: dayAdd24Hours
             });
             
         }).rejects.toBeInstanceOf(AppError);
@@ -116,7 +116,7 @@ describe("Create new Rental use cases", ()=>{
             await createRentalService.execute({
                 car_id: car.id,
                 user_id:user.id,
-                expect_return_date: new Date(Date.now())
+                expected_return_date: new Date(Date.now())
             });
         }).rejects.toBeInstanceOf(AppError);
     });
@@ -126,7 +126,7 @@ describe("Create new Rental use cases", ()=>{
         await createRentalService.execute({
             car_id: car.id,
             user_id:user.id,
-            expect_return_date: dayAdd24Hours
+            expected_return_date: dayAdd24Hours
         });
 
         const findedCar = await carsRepository.findById(car.id);
