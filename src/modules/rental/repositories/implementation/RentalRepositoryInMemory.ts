@@ -4,7 +4,7 @@ import { IRentalRepository } from "../IRentalRepository";
 interface IRequest{
     car_id:string;
     user_id:string;
-    expected_return_date: Date;
+    expect_return_date: Date;
 }
 
 class RentalRepositoryInMemory implements IRentalRepository{
