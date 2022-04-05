@@ -3,7 +3,7 @@ import { Rental } from "../infra/typeorm/entities/Rental";
 interface IRequest{
     car_id:string;
     user_id:string;
-    expected_return_date: Date;
+    expect_return_date: Date;
 }
 
 interface IRentalRepository{
