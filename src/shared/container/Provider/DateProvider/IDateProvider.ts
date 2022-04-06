@@ -7,4 +7,6 @@ interface IDateProvider{
     convertDateToUtc(date: Date): string;
     
     dateNow(): Date;
+
+    addDays(days: number): Date
 }

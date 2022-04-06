@@ -3,6 +3,9 @@ import { IUserRepository } from "../../repositories/IUserRepository";
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken'; 
 import { AppError } from "../../../../shared/errors/AppError";
+import auth from "../../../../config/auth";
+import { ITokenRepository } from "../../repositories/ITokenRepository";
+
 
 interface IUserToken{
     token: string;
@@ -10,6 +13,7 @@ interface IUserToken{
         email : string,
         name: string
     };
+    refreshToken: string;
 }
 
 type IUser = {
@@ -21,11 +25,23 @@ type IUser = {
 class UserAuthenticationService{
     constructor(
         @inject('UsersRepository')
-        private userRepository: IUserRepository){
+        private userRepository: IUserRepository,
+        @inject('TokenRepository')
+        private tokenRepository: ITokenRepository,
+        @inject('DateProvider')
+        private dateProvider: IDateProvider
+        ){
     }
 
     async execute({email, password}: IUser): Promise<IUserToken>{
-        const userFinded = await this.userRepository.findByEmail(email);
+        const {tokenSecret, 
+               expiresToken,
+               expiresRefreshToken,
+               refreshTokenSecret,
+               expiresRefreshTokenNumber
+            } = auth;
+        
+            const userFinded = await this.userRepository.findByEmail(email);
 
         if(!userFinded){
             throw new AppError(401, 'Email not matched');
@@ -38,10 +54,22 @@ class UserAuthenticationService{
         }
 
         const token = sign({},
-             '5ea21157384b8412247666524f8605193a41b3535104a91950970c2b9856af32', 
+             tokenSecret, 
              { subject: userFinded.id,
-                expiresIn : '1d'
+                expiresIn : expiresToken
             });
+
+        const refreshToken = sign({email},
+            refreshTokenSecret, 
+            { subject: userFinded.id,
+              expiresIn : expiresRefreshToken
+            });
+
+        await this.tokenRepository.create({
+            user_id: userFinded.id,
+            refresh_token: refreshToken,
+            expires_at: this.dateProvider.addDays(expiresRefreshTokenNumber) 
+        });
         
         
         return {
@@ -49,7 +77,8 @@ class UserAuthenticationService{
             user : {
                 name : userFinded.name,
                 email : userFinded.email
-            }
+            },
+            refreshToken
         }  
     }
 

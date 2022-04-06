@@ -11,6 +11,8 @@ import { ISpecificationsRepository } from '../../modules/cars/repositories/ISpec
 import { IRentalRepository } from '../../modules/rental/repositories/IRentalRepository';
 import { RentalRepository } from '../../modules/rental/infra/typeorm/repositories/RentalRepository';
 import { DateProvider } from './Provider/DateProvider/Implementations/DateProvider';
+import { ITokenRepository } from '../../modules/accounts/repositories/ITokenRepository';
+import { TokensRepository } from '../../modules/accounts/infra/typeorm/Repositories/TokensRepository';
 
 
 container.registerSingleton<ICategoriesRepository>(
@@ -41,4 +43,9 @@ container.registerSingleton<IRentalRepository>(
 container.registerSingleton<IDateProvider>(
     'DateProvider',
     DateProvider
+)
+
+container.registerSingleton<ITokenRepository>(
+    'TokenRepository',
+    TokensRepository
 )
