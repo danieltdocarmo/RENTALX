@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 import { AppError } from "../../../errors/AppError";
 import { UsersRepository } from "../../../../modules/accounts/infra/typeorm/Repositories/UsersRepository";
-
+import auth from "../../../../config/auth";
+import { TokensRepository } from "../../../../modules/accounts/infra/typeorm/Repositories/TokensRepository";
 
 interface IToken{
     sub: string;
@@ -10,6 +11,8 @@ interface IToken{
 
 export default async function ensureAuthentication(request:Request, response:Response, next:NextFunction){
     const userRepository = new UsersRepository();
+    const tokenRepository = new TokensRepository();
+
     const {authorization} = request.headers;
 
     if(!authorization){
@@ -20,11 +23,14 @@ export default async function ensureAuthentication(request:Request, response:Res
 
     try{
    
-        const { sub: userId } = verify(token, "5ea21157384b8412247666524f8605193a41b3535104a91950970c2b9856af32") as IToken;
+        const { sub: userId } = 
+        verify(token, 
+            auth.refreshTokenSecret) as IToken;
+        
+        const userAndToken = await tokenRepository.findByUserIdAndRefreshToken(authorization, userId);
 
-        const user = await userRepository.findById(userId);
 
-        if(!user){
+        if(!userAndToken){
             throw new AppError(401, 'User not found');
         }
 

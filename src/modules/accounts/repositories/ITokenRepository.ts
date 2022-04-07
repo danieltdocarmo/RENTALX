@@ -9,5 +9,9 @@ interface IToken {
 interface ITokenRepository {
     
     create({refresh_token, user_id, expires_at}: IToken): Promise<Token>;
+    findByUserIdAndRefreshToken(user_id:string, refresh_token:string):Promise<Token>;
+    delete(refresh_token: string): Promise<void>;
 
-} export {ITokenRepository, IToken}
+} 
+
+export {ITokenRepository, IToken}
